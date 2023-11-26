@@ -1,4 +1,4 @@
-# NFL-Kickoff-Return-Stats
+# NFL Kickoff Return Stats
 
 Streamlit app for displaying NFL kickoff return stats.
 
