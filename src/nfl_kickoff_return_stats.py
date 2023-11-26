@@ -45,6 +45,17 @@ def main():
 
     # Display DataFrame
     with st.expander("Raw data, source: NFL.com", expanded=False):
+        # Query options
+        st.sidebar.header("Data Options")
+
+        # Filter by column values
+        selected_column = st.sidebar.selectbox("Filter by column", ["Player"])
+        filter_value = st.sidebar.text_input(f"Enter column value", "")
+
+        # Apply filter
+        if filter_value:
+            df = df[df[selected_column] == filter_value]
+
         st.write(df)
 
     # Column selection
