@@ -33,6 +33,15 @@ def main():
 
     # Read CSV file into DataFrame
     df = read_data("data/NFL_Kickoff_Return_Stats.csv")
+    df = df.rename(columns={
+        "Avg": "Average Return (yds)",
+        "Ret": "Total Returns (count)",
+        "Yds": "Total Yards (yds)",
+        "KRet TD": "Total Touchdowns (count)",
+        "20+": "Returns > 20 yards (count)",
+        "40+": "Returns > 40 yards (count)",
+        "Lng": "Longest return (yds)",
+    })
 
     # Display DataFrame
     with st.expander("Raw data, source: NFL.com", expanded=False):
@@ -40,13 +49,14 @@ def main():
 
     # Column selection
     columns = df.columns.tolist()
-    columns = [col for col in columns if col not in ["Year", "Player"]]
-    y_column = st.selectbox("Select stat", columns)
+    columns = [col for col in columns if col not in ["Year", "Player", "FC", "FUM"]]
+    y_column = st.selectbox("Select stat", columns, index=2)
 
     # Aggregation selection
     aggregation = st.selectbox(
-        "Select Aggregation",
+        "Select aggregation",
         ["Sum", "Mean", "Median", "Max", "Min", "Count"],
+        index=0,
     )
 
     # Create and display the bar chart
