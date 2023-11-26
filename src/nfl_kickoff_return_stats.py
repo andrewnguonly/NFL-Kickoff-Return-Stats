@@ -25,7 +25,7 @@ def create_bar_chart(data, x_column, y_column, aggregation):
         st.error("Invalid aggregation type.")
         return
 
-    st.bar_chart(chart_data)
+    st.bar_chart(chart_data, y=y_column)
 
 # Streamlit app
 def main():
